@@ -15,9 +15,25 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // 1. Get the value of the 'count' cookie
-  // 2. If the cookie exists, increment the value and update the cookie
-  // 3. If the cookie does not exist, create it and set the value to 1
-  // 4. Display the count on the webpage
+  let count = getCookie('count');
 
-  // your code here
+  // 2. If the cookie exists, increment the value and update the cookie
+  // 3. If the cookie does not exist, create it and set the value to 0
+  if (count === null) {
+    count = 0;
+  } else {
+    count = parseInt(count);
+  }
+
+  // Increment the count
+  count++;
+
+  // Update the cookie with the new count value (expires in 7 days)
+  setCookie('count', count, 7);
+
+  // 4. Display the count on the webpage
+  const countDisplay = document.getElementById('countDisplay');
+  if (countDisplay) {
+    countDisplay.textContent = count;
+  }
 });
